@@ -1,6 +1,5 @@
 import { useMemo, useState } from "react";
-
-const TOTAL_IMAGES = 18;
+import { flashcards } from "./cards";
 
 type CardStatus = "unseen" | "done" | "revision";
 
@@ -18,22 +17,19 @@ function buildDeck(count: number): number[] {
 }
 
 function App() {
-  const images = useMemo(
-    () =>
-      Array.from(
-        { length: TOTAL_IMAGES },
-        (_, i) => new URL(`./resources/${i + 1}.png`, import.meta.url).href
-      ),
-    []
-  );
+  const cards = useMemo(() => flashcards, []);
 
-  const [deck, setDeck] = useState<number[]>(() => buildDeck(images.length));
+  const [deck, setDeck] = useState<number[]>(() => buildDeck(cards.length));
   const [position, setPosition] = useState(0);
   const [statuses, setStatuses] = useState<CardStatus[]>(() =>
-    Array(images.length).fill("unseen")
+    Array(cards.length).fill("unseen")
+  );
+  const [revealedAnswers, setRevealedAnswers] = useState<boolean[]>(() =>
+    Array(cards.length).fill(false)
   );
 
-  const currentImageIndex = deck[position];
+  const currentCardIndex = deck[position];
+  const currentCard = cards[currentCardIndex];
   const total = deck.length;
   const doneCount = statuses.filter((s) => s === "done").length;
   const revisionCount = statuses.filter((s) => s === "revision").length;
@@ -54,7 +50,7 @@ function App() {
   const markStatus = (status: CardStatus) => {
     setStatuses((prev) => {
       const next = [...prev];
-      next[currentImageIndex] = status;
+      next[currentCardIndex] = status;
       return next;
     });
     if (canGoNext) {
@@ -63,12 +59,22 @@ function App() {
   };
 
   const handleRestart = () => {
-    setDeck(buildDeck(images.length));
+    setDeck(buildDeck(cards.length));
     setPosition(0);
-    setStatuses(Array(images.length).fill("unseen"));
+    setStatuses(Array(cards.length).fill("unseen"));
+    setRevealedAnswers(Array(cards.length).fill(false));
   };
 
-  const currentStatus = statuses[currentImageIndex];
+  const toggleAnswer = () => {
+    setRevealedAnswers((prev) => {
+      const next = [...prev];
+      next[currentCardIndex] = !next[currentCardIndex];
+      return next;
+    });
+  };
+
+  const currentStatus = statuses[currentCardIndex];
+  const isAnswerRevealed = revealedAnswers[currentCardIndex];
   const isLastCard = position === total - 1;
 
   return (
@@ -121,7 +127,7 @@ function App() {
           {/* Status badge */}
           <div className="flex items-center justify-between px-5 pt-4 pb-2">
             <span className="text-xs text-base-content/40 font-medium uppercase tracking-wide">
-              Card #{position + 1}
+              Card #{position + 1} · Slide {currentCard.slideNumber}
             </span>
             {currentStatus !== "unseen" && (
               <span
@@ -140,11 +146,30 @@ function App() {
           <div className="px-5 pb-5">
             <div className="bg-base-200 rounded-2xl overflow-hidden flex items-center justify-center min-h-[260px]">
               <img
-                key={currentImageIndex}
-                src={images[currentImageIndex]}
-                alt={`Flashcard ${currentImageIndex + 1}`}
+                key={currentCardIndex}
+                src={currentCard.image}
+                alt={`Flashcard ${position + 1} from slide ${currentCard.slideNumber}`}
                 className="w-full h-auto max-h-[55vh] object-contain p-2"
               />
+            </div>
+            <div className="mt-4">
+              <button
+                className="btn btn-outline btn-sm rounded-xl w-full"
+                onClick={toggleAnswer}
+                aria-expanded={isAnswerRevealed}
+              >
+                {isAnswerRevealed ? "Hide Answer" : "Show Answer"}
+              </button>
+              {isAnswerRevealed && (
+                <div className="mt-3 rounded-2xl bg-base-200 p-4 text-left">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-base-content/50">
+                    Answer
+                  </p>
+                  <p className="mt-1 text-sm leading-6 text-base-content">
+                    {currentCard.text}
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         </div>

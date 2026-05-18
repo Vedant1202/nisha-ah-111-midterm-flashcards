@@ -1,0 +1,191 @@
+[
+  {
+    "cardNumber": 1,
+    "slideNumber": 1,
+    "sourceMedia": "ppt/media/image4.jpg",
+    "file": "1.jpg",
+    "text": "Machu Picchu, Inca, c. 1450–1531, Peru."
+  },
+  {
+    "cardNumber": 2,
+    "slideNumber": 1,
+    "sourceMedia": "ppt/media/image13.jpg",
+    "file": "2.jpg",
+    "text": "Machu Picchu, Inca, c. 1450–1531, Peru."
+  },
+  {
+    "cardNumber": 3,
+    "slideNumber": 2,
+    "sourceMedia": "ppt/media/image9.jpg",
+    "file": "3.jpg",
+    "text": "Stradano, Print Workshop, 1590, engraving print, ink on paper."
+  },
+  {
+    "cardNumber": 4,
+    "slideNumber": 3,
+    "sourceMedia": "ppt/media/image5.jpg",
+    "file": "4.jpg",
+    "text": "van den Berghe, Still Life with Flowers in a Vase, 1617, oil on canvas."
+  },
+  {
+    "cardNumber": 5,
+    "slideNumber": 4,
+    "sourceMedia": "ppt/media/image22.png",
+    "file": "5.png",
+    "text": "Artemisia Gentileschi, Judith Beheading Holofernes, 1619-1620, Uffizi, oil painting."
+  },
+  {
+    "cardNumber": 6,
+    "slideNumber": 5,
+    "sourceMedia": "ppt/media/image2.png",
+    "file": "6.png",
+    "text": "Antoine Watteau, Gersaint’s Shopsign, 1720"
+  },
+  {
+    "cardNumber": 7,
+    "slideNumber": 6,
+    "sourceMedia": "ppt/media/image3.jpg",
+    "file": "7.jpg",
+    "text": "Jacques-Louis David, Oath of the Horatii, 1784-5, oil on canvas."
+  },
+  {
+    "cardNumber": 8,
+    "slideNumber": 7,
+    "sourceMedia": "ppt/media/image8.png",
+    "file": "8.png",
+    "text": "Miguel de Cabrera, Don Juan Xavier Joachín Gutiérrez Altamirano Velasco, Count of Santiago de Calimaya, 1750s"
+  },
+  {
+    "cardNumber": 9,
+    "slideNumber": 8,
+    "sourceMedia": "ppt/media/image27.png",
+    "file": "9.png",
+    "text": "San Francisco Acatepec, Puebla, Mexico, late 1700s"
+  },
+  {
+    "cardNumber": 10,
+    "slideNumber": 9,
+    "sourceMedia": "ppt/media/image11.jpg",
+    "file": "10.jpg",
+    "text": "Katsushika Hokusai, Under the Wave off Kanagawa, from Thirty-Six Views of Mount Fuji, ca. 1830-33, color woodblock print"
+  },
+  {
+    "cardNumber": 11,
+    "slideNumber": 10,
+    "sourceMedia": "ppt/media/image14.png",
+    "file": "11.png",
+    "text": "F.W. Stevens with Sitaram Khanderao and Madherao Janardhan, Chhatrapati Shivaji Terminus (formerly Victoria Terminus), begun 1878, Mumbai, India"
+  },
+  {
+    "cardNumber": 12,
+    "slideNumber": 11,
+    "sourceMedia": "ppt/media/image24.png",
+    "file": "12.png",
+    "text": "Raja Ravi Varma, There Comes Papa, 1893. Oil on canvas, 122 × 78 cm. Trivandrum: Private Collection"
+  },
+  {
+    "cardNumber": 13,
+    "slideNumber": 12,
+    "sourceMedia": "ppt/media/image16.jpg",
+    "file": "13.jpg",
+    "text": "Gustave Courbet, A Burial at Ornans, 1849, oil on canvas, 315 cm × 660 cm (124 in × 260 in). Musée d’Orsay, Paris."
+  },
+  {
+    "cardNumber": 14,
+    "slideNumber": 13,
+    "sourceMedia": "ppt/media/image17.jpg",
+    "file": "14.jpg",
+    "text": "Édouard Manet, Olympia, 1863, oil on canvas, 130.5 cm × 190 cm (51.4 in × 74.8 in). Musée d’Orsay, Paris."
+  },
+  {
+    "cardNumber": 15,
+    "slideNumber": 14,
+    "sourceMedia": "ppt/media/image25.png",
+    "file": "15.png",
+    "text": "Pablo Picasso, Les Demoiselles d’Avignon (The Young Ladies of Avignon), 1907, oil on canvas, 243.9 cm × 233.7 cm (96 in × 92 in). MoMA, NY."
+  },
+  {
+    "cardNumber": 16,
+    "slideNumber": 15,
+    "sourceMedia": "ppt/media/image10.png",
+    "file": "16.png",
+    "text": "Tarsila do Amaral, Anthropophagy, 1929, oil on canvas, 126 × 142 cm. MoMA, NY."
+  },
+  {
+    "cardNumber": 17,
+    "slideNumber": 16,
+    "sourceMedia": "ppt/media/image7.png",
+    "file": "17.png",
+    "text": "Liubov Popova, Set Design for The Magnanimous Cuckold, 1922."
+  },
+  {
+    "cardNumber": 18,
+    "slideNumber": 16,
+    "sourceMedia": "ppt/media/image1.jpg",
+    "file": "18.jpg",
+    "text": "Liubov Popova, Set Design for The Magnanimous Cuckold, 1922."
+  },
+  {
+    "cardNumber": 19,
+    "slideNumber": 17,
+    "sourceMedia": "ppt/media/image15.png",
+    "file": "19.png",
+    "text": "David Smith, Tanktotem III, 1953, welded steel. (3 views)"
+  },
+  {
+    "cardNumber": 20,
+    "slideNumber": 17,
+    "sourceMedia": "ppt/media/image6.png",
+    "file": "20.png",
+    "text": "David Smith, Tanktotem III, 1953, welded steel. (3 views)"
+  },
+  {
+    "cardNumber": 21,
+    "slideNumber": 17,
+    "sourceMedia": "ppt/media/image12.jpg",
+    "file": "21.jpg",
+    "text": "David Smith, Tanktotem III, 1953, welded steel. (3 views)"
+  },
+  {
+    "cardNumber": 22,
+    "slideNumber": 18,
+    "sourceMedia": "ppt/media/image20.png",
+    "file": "22.png",
+    "text": "Melvin Edwards, Mojo for 1404, 1964, welded steel. (3 views)"
+  },
+  {
+    "cardNumber": 23,
+    "slideNumber": 18,
+    "sourceMedia": "ppt/media/image19.jpg",
+    "file": "23.jpg",
+    "text": "Melvin Edwards, Mojo for 1404, 1964, welded steel. (3 views)"
+  },
+  {
+    "cardNumber": 24,
+    "slideNumber": 18,
+    "sourceMedia": "ppt/media/image21.jpg",
+    "file": "24.jpg",
+    "text": "Melvin Edwards, Mojo for 1404, 1964, welded steel. (3 views)"
+  },
+  {
+    "cardNumber": 25,
+    "slideNumber": 19,
+    "sourceMedia": "ppt/media/image18.jpg",
+    "file": "25.jpg",
+    "text": "Andy Warhol, Mao, 1973, silkscreen, acrylic."
+  },
+  {
+    "cardNumber": 26,
+    "slideNumber": 20,
+    "sourceMedia": "ppt/media/image26.png",
+    "file": "26.png",
+    "text": "Paul Strand, Asenah Wara, Leader of the Women’s Party, Wa, 1964, photograph."
+  },
+  {
+    "cardNumber": 27,
+    "slideNumber": 21,
+    "sourceMedia": "ppt/media/image23.png",
+    "file": "27.png",
+    "text": "Theaster Gates, Stony Island Arts Bank, 2015, Chicago."
+  }
+]
