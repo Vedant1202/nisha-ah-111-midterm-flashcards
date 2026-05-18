@@ -305,7 +305,7 @@ function App() {
               All done! 👸💅🐀👑
             </h2>
             <p className="mt-2 text-sm text-base-content/60 px-2 sm:px-0">
-              Every flashcard is marked done and no revision cards remain.
+              Every flashcard is marked done and no revision cards remain, my eepy princess.
             </p>
             <div className="mx-auto mt-5 w-full max-w-[280px] aspect-[3/4] rounded-2xl overflow-hidden blue-glow-shadow shiny-container border border-blue-500/20">
               <img
