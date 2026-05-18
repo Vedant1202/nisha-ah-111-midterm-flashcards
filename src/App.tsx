@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { flashcards } from "./cards";
+import completionImage from "./resources/Image bicep.jpeg";
 
 type CardStatus = "unseen" | "done" | "revision";
 
@@ -27,17 +28,19 @@ function App() {
   const [revealedAnswers, setRevealedAnswers] = useState<boolean[]>(() =>
     Array(cards.length).fill(false)
   );
+  const [isComplete, setIsComplete] = useState(false);
 
   const currentCardIndex = deck[position];
   const currentCard = cards[currentCardIndex];
-  const total = deck.length;
+  const queuedTotal = deck.length;
+  const totalCards = cards.length;
   const doneCount = statuses.filter((s) => s === "done").length;
   const revisionCount = statuses.filter((s) => s === "revision").length;
   const unseenCount = statuses.filter((s) => s === "unseen").length;
-  const progressPercent = Math.round((doneCount / total) * 100);
+  const progressPercent = Math.round((doneCount / totalCards) * 100);
 
   const canGoPrev = position > 0;
-  const canGoNext = position < total - 1;
+  const canGoNext = position < queuedTotal - 1;
 
   const handlePrev = () => {
     if (canGoPrev) setPosition((p) => p - 1);
@@ -48,14 +51,40 @@ function App() {
   };
 
   const markStatus = (status: CardStatus) => {
-    setStatuses((prev) => {
+    const nextStatuses = [...statuses];
+    nextStatuses[currentCardIndex] = status;
+    setStatuses(nextStatuses);
+    setRevealedAnswers((prev) => {
       const next = [...prev];
-      next[currentCardIndex] = status;
+      next[currentCardIndex] = false;
       return next;
     });
+
     if (canGoNext) {
       setPosition((p) => p + 1);
+      return;
     }
+
+    const revisionIndexes = nextStatuses
+      .map((cardStatus, index) => (cardStatus === "revision" ? index : -1))
+      .filter((index) => index !== -1);
+    const unfinishedIndexes = nextStatuses
+      .map((cardStatus, index) => (cardStatus !== "done" ? index : -1))
+      .filter((index) => index !== -1);
+
+    if (revisionIndexes.length > 0) {
+      setDeck((prev) => [...prev, ...shuffle(revisionIndexes)]);
+      setPosition((p) => p + 1);
+      return;
+    }
+
+    if (unfinishedIndexes.length > 0) {
+      setDeck((prev) => [...prev, ...shuffle(unfinishedIndexes)]);
+      setPosition((p) => p + 1);
+      return;
+    }
+
+    setIsComplete(true);
   };
 
   const handleRestart = () => {
@@ -63,6 +92,7 @@ function App() {
     setPosition(0);
     setStatuses(Array(cards.length).fill("unseen"));
     setRevealedAnswers(Array(cards.length).fill(false));
+    setIsComplete(false);
   };
 
   const toggleAnswer = () => {
@@ -75,7 +105,6 @@ function App() {
 
   const currentStatus = statuses[currentCardIndex];
   const isAnswerRevealed = revealedAnswers[currentCardIndex];
-  const isLastCard = position === total - 1;
 
   return (
     <div
@@ -89,7 +118,7 @@ function App() {
             Flashcard Practice
           </h1>
           <p className="text-sm text-base-content/60 mt-1">
-            Card {position + 1} of {total}
+            Queue {position + 1} of {queuedTotal}
           </p>
         </div>
 
@@ -104,7 +133,7 @@ function App() {
           <progress
             className="progress progress-primary w-full h-3 rounded-full"
             value={doneCount}
-            max={total}
+            max={totalCards}
           />
           <div className="flex justify-between gap-2 text-xs text-center">
             <div className="flex-1 bg-base-200 rounded-xl py-1.5 px-2">
@@ -175,7 +204,7 @@ function App() {
         </div>
 
         {/* Mark buttons */}
-        {!isLastCard || currentStatus === "unseen" ? (
+        {!isComplete ? (
           <div className="flex gap-3">
             <button
               className="btn btn-success flex-1 rounded-2xl gap-2 shadow-sm"
@@ -214,16 +243,7 @@ function App() {
               Needs Revision
             </button>
           </div>
-        ) : (
-          <div className="bg-base-100 rounded-2xl shadow-sm p-5 text-center">
-            <p className="text-lg font-bold text-base-content">
-              {doneCount === total ? "🎉 All done!" : "Session complete!"}
-            </p>
-            <p className="text-sm text-base-content/60 mt-1">
-              {doneCount} done · {revisionCount} need revision
-            </p>
-          </div>
-        )}
+        ) : null}
 
         {/* Navigation */}
         <div className="flex gap-3">
@@ -265,6 +285,50 @@ function App() {
           </button>
         </div>
       </div>
+
+      {isComplete && (
+        <div className="modal modal-open">
+          <div className="modal-box w-11/12 max-w-2xl relative overflow-hidden rounded-3xl text-center p-6 sm:p-8">
+            <button
+              className="btn btn-sm btn-circle btn-ghost absolute right-4 top-4 z-50 text-base-content/60 hover:text-base-content"
+              onClick={() => setIsComplete(false)}
+              aria-label="Close"
+            >
+              ✕
+            </button>
+            <div className="confetti" aria-hidden="true">
+              {Array.from({ length: 28 }, (_, i) => (
+                <span key={i} />
+              ))}
+            </div>
+            <h2 className="text-2xl font-bold text-base-content px-6 sm:px-0">
+              All done! 👸💅🐀👑
+            </h2>
+            <p className="mt-2 text-sm text-base-content/60 px-2 sm:px-0">
+              Every flashcard is marked done and no revision cards remain.
+            </p>
+            <div className="mx-auto mt-5 w-full max-w-[280px] aspect-[3/4] rounded-2xl overflow-hidden blue-glow-shadow shiny-container border border-blue-500/20">
+              <img
+                src={completionImage}
+                alt="Completion placeholder"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="modal-action justify-center mt-6">
+              <button
+                className="btn btn-primary rounded-2xl px-8"
+                onClick={handleRestart}
+              >
+                Restart Flashcards
+              </button>
+            </div>
+          </div>
+          <div
+            className="modal-backdrop bg-base-content/30 cursor-pointer"
+            onClick={() => setIsComplete(false)}
+          />
+        </div>
+      )}
     </div>
   );
 }
